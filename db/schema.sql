@@ -1,0 +1,2 @@
+DROP DATABASE IF EXISTS devise_db;
+CREATE DATABASE devise_db;

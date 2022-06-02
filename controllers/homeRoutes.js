@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const res = require('express/lib/response');
-const {User Comment Chat Tasks Reminder} = require('../models');
+const {User, Teams, userTeam} = require('../models');
 const Authenticated = require('../utils/auth');
 
 
@@ -13,6 +13,10 @@ router.get('/', async (req, res) => {
     res.render('login');
 });
 
+router.get('/teams', Authenticated, async (req, res) => {
+
+});
+
 //will need to get and display all info we want on the homepage when the user is logged in
 router.get('/dashboard', Authenticated, async (req, res) = {
     try {
@@ -21,7 +25,5 @@ router.get('/dashboard', Authenticated, async (req, res) = {
     }
 });
 
-router.get('/teams', Authenticated, async (req, res) => {
-    
-})
+
 

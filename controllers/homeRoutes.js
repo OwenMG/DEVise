@@ -14,7 +14,9 @@ router.get('/', async (req, res) => {
 });
 
 router.get('/teams', Authenticated, async (req, res) => {
-
+    try {
+        const teamData = await Teams.findAll
+    }
 });
 
 //will need to get and display all info we want on the homepage when the user is logged in

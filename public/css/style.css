@@ -1,0 +1,12 @@
+body { 
+    background-image: url("../images/background-roasted-fresh-brown-coffee-beans-perfect-cool-wallpaper.jpg") ;
+    background-repeat: no-repeat;
+    /* background-position: center center; */
+    background-size: cover;
+    /* background-color: salmon; */
+}
+
+.mocha {
+    background-color: #B79479;
+}
+

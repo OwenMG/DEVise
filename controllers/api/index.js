@@ -5,6 +5,6 @@ const milestoneRoutes = require('./milestoneRoutes');
 
 router.use('/users', userRoutes);
 router.use('/teams', teamRoutes);
-router.use('/milestones', milestoneRoutes);
+// router.use('/milestones', milestoneRoutes);
 
 module.exports = router;

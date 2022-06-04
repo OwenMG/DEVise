@@ -11,3 +11,7 @@ body {
     background: linear-gradient(#795A46, #B79479, #CDC3BE) no-repeat;
 }
 
+.signUpBackground {
+    background-image: url("../images/coffee-beans-top-view-white-background-space-text\ \(1\).jpg");
+}
+

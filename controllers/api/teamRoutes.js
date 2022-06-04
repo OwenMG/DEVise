@@ -1,14 +1,14 @@
 const router = require('express').Router();
-const {Team, User} = require('../../models');
+const {Team, User, UserTeam} = require('../../models');
 const Authenticated = require('../../utils/auth');
 
 router.get('/', Authenticated, async (req, res) => {
     try {
         const userTeamData = await User.findByPk(req.session.user_id, {
-            attributes: {exclude: ['password', 'first-name', 'last-name', 'email']},
-            include: [{model: Team, through: Trip, as: 'users-teams' }],
+            attributes: {exclude: ['password', 'first_name', 'last_name', 'email']},
+            include:[{model:Team, attributes: {exclude: ['password','user_team']}}],
+            // include: {model: Team, through: UserTeam, as: 'users-teams' },
         });
-
         if(!userTeamData) {
             res
                 .status(404)
@@ -16,9 +16,7 @@ router.get('/', Authenticated, async (req, res) => {
                 return;
         }
 
-        const teams = userTeamData.get({plain: true});
-
-        res.status(200).json(teams);
+        res.status(200).json(userTeamData);
         } catch (err) {
         res.status(400).json(err);
     }

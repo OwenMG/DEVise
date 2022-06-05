@@ -6,8 +6,7 @@ router.get('/', Authenticated, async (req, res) => {
     try {
         const userTeamData = await User.findByPk(req.session.user_id, {
             attributes: {exclude: ['password', 'first_name', 'last_name', 'email']},
-            include:[{model:Team, attributes: {exclude: ['password','user_team']}}],
-            // include: {model: Team, through: UserTeam, as: 'users-teams' },
+            include:[{model:Team, attributes: {exclude: ['password']}}],
         });
         if(!userTeamData) {
             res
@@ -18,6 +17,20 @@ router.get('/', Authenticated, async (req, res) => {
 
         res.status(200).json(userTeamData);
         } catch (err) {
+        res.status(400).json(err);
+    }
+});
+
+router.post('/', Authenticated, async (req, res) => {
+    try {
+        const newTeam = await Team.create(req.body);
+
+        req.session.save(() => {
+            req.session.team_id = newTeam.id;
+
+            res.status(200).json({team: newTeam, message: 'Your team has been created!'});
+        });
+    } catch (err) {
         res.status(400).json(err);
     }
 });

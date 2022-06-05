@@ -38,8 +38,8 @@ router.post('/', Authenticated, async (req, res) => {
 
 router.post('/jointeam', Authenticated, async (req, res) => {
     try {
-        const teamData = Team.findOne({where: {name: req.body.name}});
-        const currentUser = User.findByPk(req.session.user_id);
+        const teamData = await Team.findOne({where: {name: req.body.name}});
+        const currentUser = await User.findByPk(req.session.user_id);
 
         const validPass = await teamData.checkPassword(req.body.password);
 

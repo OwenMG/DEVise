@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const { User } = require('../../models');
+const Authenticated = require('../../utils/auth');
 
 router.post('/login', async (req, res) => {
     try {
@@ -30,7 +31,7 @@ router.post('/login', async (req, res) => {
     }
 });
 
-router.post('/', async (req, res) => {
+router.post('/create', async (req, res) => {
     try {
         const userData = await User.create(req.body);
 
@@ -53,6 +54,16 @@ router.post('/logout', (req, res) => {
         });
     } else {
         res.status(404).end();
+    }
+});
+
+router.get('/', Authenticated, async (req,res) => {
+    try {
+        const userData = await User.findByPk(req.session.user_id, {attributes:{exclude:['password']}});
+        res.status(200).json(userData);
+
+    } catch (err) {
+        res.status(400).json(err);
     }
 });
 

@@ -16,6 +16,8 @@ router.get('/', Authenticated, async (req, res) => {
                 return;
         }
 
+        const teams = userTeamData.get({plain:true});
+
         res.status(200).json(userTeamData);
         } catch (err) {
         res.status(400).json(err);

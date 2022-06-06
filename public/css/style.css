@@ -23,7 +23,6 @@
     background-color: #CDC3BE;
 } */
 
-  
 .sidebar {
     position: fixed;
     top: 0;
@@ -59,7 +58,7 @@
   }
   
   .sidebar .nav-link.active {
-    color: #0d6efd;
+    color: #766e3f;
   }
     
 

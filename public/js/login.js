@@ -12,7 +12,7 @@ const loginFormHandler = async (event) => {
         });
 
         if (response.ok) {
-            document.location.replace('/teamPage');
+            document.location.replace('/teamDash');
         } else {
             alert(response.statusText);
         }

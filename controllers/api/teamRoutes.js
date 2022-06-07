@@ -1,7 +1,6 @@
 const router = require('express').Router();
 const {Team, User, UserTeam} = require('../../models');
 const Authenticated = require('../../utils/auth');
-const bcrypt = require('bcrypt');
 
 router.get('/', Authenticated, async (req, res) => {
     try {

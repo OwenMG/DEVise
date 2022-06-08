@@ -1,8 +1,8 @@
 const createTeamFormHandler = async (event) => {
     event.preventDefault();
 
-    const name = document.querySelector('#team-name').value.trim();
-    const password = document.querySelector('#team-password').value.trim();
+    const name = document.querySelector('#typeNewTeamNameX').value.trim();
+    const password = document.querySelector('#typeNewTeamPasswordX').value.trim();
 
     if (teamName && password) {
         const response = await fetch('/api/teams/', {
@@ -12,7 +12,7 @@ const createTeamFormHandler = async (event) => {
         });
 
         if (response.ok) {
-            document.location.replace('/dashboard');
+            document.location.replace('/teamDash');
         } else {
             alert(response.statusText);
         }
@@ -33,12 +33,12 @@ const joinTeamFormHandler = async (event) => {
         });
 
         if (response.ok) {
-            document.location.replace('/dashboard');
+            document.location.replace('/teamDash');
         } else {
             alert(response.statusText);
         }
     }
 };
 
-document.querySelector('.join-form').addEventListener('submit', joinTeamFormHandler);
-document.querySelector('.create-form').addEventListener('submit', createTeamFormHandler);
+document.querySelector('#joinSubmit').addEventListener('click', joinTeamFormHandler);
+document.querySelector('#createSubmit').addEventListener('click', createTeamFormHandler);

@@ -17,6 +17,14 @@ router.get('/signup', async (req, res) => {
     res.render('signup');
 });
 
+router.get('/joinTeam', async (req, res) => {
+    if(req.session.logged_in) {
+        res.redirect('/teamDash');
+        return;
+    }
+    res.render('joinTeam');
+});
+
 
 module.exports = router;
 

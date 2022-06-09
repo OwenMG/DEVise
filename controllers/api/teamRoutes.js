@@ -30,7 +30,9 @@ const Authenticated = require('../../utils/auth');
 router.post('/', Authenticated, async (req, res) => {
     try {
         const newTeam = await Team.create(req.body);
-        const newUserTeam = await UserTeam({user_id: req.session.user_id, team_id:newTeam.id});
+        const plainTeam = newTeam.map((teams) => teams.get({plain:true}));
+
+        const newUserTeam = await UserTeam({user_id: req.session.user_id, team_id:plainTeam.id});
 
         req.session.save(() => {
             req.session.team_id = newTeam.id;

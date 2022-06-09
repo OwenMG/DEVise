@@ -15,9 +15,6 @@
     background-size: cover;
 }
 
-/* .teamDashboardBackground {
-    background-color: #EBEBEB;
-} */
 
 .navbarColor {
     background-color: #7A8187;
@@ -57,18 +54,29 @@
     color: #333;
   }
   
-  .sidebar .nav-link.active {
+  /* .sidebar .nav-link.active {
     color: #766e3f;
-  }
+  } */
     
 
 .mocha {
-    /* background-color: #B79479; */
     background: linear-gradient(#795A46, #B79479, #CDC3BE) no-repeat;
 }
 
 .matcha {
     background: linear-gradient(#766e3f, #a69e70, #b6b9a3) no-repeat;
+}
+
+.coolBeige {
+  background-color: #CDC3BE;
+}
+
+.coolCream {
+  background-color: #EBEBEB;
+}
+
+.lightCoffee {
+  background-color: #B79479;
 }
 
 .teamPageAllignment {

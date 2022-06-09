@@ -30,6 +30,10 @@ Team.init(
   },
   {
     hooks: {
+        beforeBulkCreate: async (newTeamData) => {
+        newTeamData.password = await bcrypt.hash(newTeamData.password, 10);
+        return newTeamData;
+        },
         beforeCreate: async (newTeamData) => {
         newTeamData.password = await bcrypt.hash(newTeamData.password, 10);
         return newTeamData;

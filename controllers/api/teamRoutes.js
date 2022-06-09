@@ -2,33 +2,35 @@ const router = require('express').Router();
 const {Team, User, UserTeam} = require('../../models');
 const Authenticated = require('../../utils/auth');
 
-router.get('/', Authenticated, async (req, res) => {
-    try {
-        const userTeamData = await User.findByPk(req.session.user_id, {
-            attributes: {exclude: ['password', 'first_name', 'last_name', 'email']},
-            include:[{model:Team, attributes: {exclude: ['password']}}],
-        });
-        if(!userTeamData) {
-            res
-                .status(404)
-                .json({ message: 'No Teams Found. Create a new team or enter Team password to join a team' });
-                return;
-        }
-        const teams = userTeamData.teams
+// router.get('/', Authenticated, async (req, res) => {
+//     try {
+//         const userTeamData = await User.findByPk(req.session.user_id, {
+//             attributes: {exclude: ['password', 'first_name', 'last_name', 'email']},
+//             include:[{model:Team, attributes: {exclude: ['password']}}],
+//         });
+//         if(!userTeamData) {
+//             res
+//                 .status(404)
+//                 .json({ message: 'No Teams Found. Create a new team or enter Team password to join a team' });
+//                 return;
+//         }
+//         const teams = userTeamData.teams
         
-        const plainTeams = teams.map((teams) => teams.get({plain:true}));
-        console.log(plainTeams[0].name);
+//         const plainTeams = teams.map((teams) => teams.get({plain:true}));
+//         console.log(plainTeams[0].name);
+//         res.render('joinTeam', {
+//             plainTeams
+//         })
+//         res.status(200).json(plainTeams);
 
-        res.status(200).json(plainTeams);
-        } catch (err) {
-        res.status(400).json(err);
-    }
-});
+//     }
+// });
 
 
 router.post('/', Authenticated, async (req, res) => {
     try {
         const newTeam = await Team.create(req.body);
+        const newUserTeam = await UserTeam({user_id: req.session.user_id, team_id:newTeam.id});
 
         req.session.save(() => {
             req.session.team_id = newTeam.id;

@@ -1,12 +1,10 @@
-const res = require("express/lib/response");
-
 const createTeamFormHandler = async (event) => {
     event.preventDefault();
 
     const name = document.querySelector('#typeNewTeamNameX').value.trim();
     const password = document.querySelector('#typeNewTeamPasswordX').value.trim();
 
-    if (teamName && password) {
+    if (name && password) {
         const response = await fetch('/api/teams/', {
             method: 'POST',
             body: JSON.stringify({ name, password }),
@@ -27,7 +25,7 @@ const joinTeamFormHandler = async (event) => {
     const name = document.querySelector('#typeExistTeamNameX').value.trim();
     const password = document.querySelector('#typeJoinTeamPasswordX').value.trim();
 
-    if (teamName && password) {
+    if (name && password) {
         const response = await fetch('/api/teams/jointeam', {
             method: 'POST',
             body: JSON.stringify({ name, password }),

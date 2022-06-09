@@ -38,6 +38,10 @@ Team.init(
         newTeamData.password = await bcrypt.hash(newTeamData.password, 10);
         return newTeamData;
         },
+        beforeBulkUpdate: async (updatedUserData) => {
+          updatedUserData.password = await bcrypt.hash(updatedUserData.password, 10);
+          return updatedUserData;
+        },
         beforeUpdate: async (updatedTeamData) => {
         updatedTeamData.password = await bcrypt.hash(updatedTeamData.password, 10);
         return updatedTeamData;

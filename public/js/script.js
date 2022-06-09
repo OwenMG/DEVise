@@ -8,6 +8,7 @@ new Chartist.Line('#progress-chart', {
   showArea: true
 });
 
+
 $(document).ready(function(){
 	$('[data-toggle="tooltip"]').tooltip();
 	var actions = $("table td:last-child").html();

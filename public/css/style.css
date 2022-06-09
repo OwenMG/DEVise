@@ -8,6 +8,7 @@
 
 .signUpBackground {
     background-image: url("../images/background-blurry-restaurant-shop-interior.jpg");
+    background-size: cover;;
 }
 
 .teamBackground {

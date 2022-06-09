@@ -1,18 +1,18 @@
 const loginFormHandler = async (event) => {
     event.preventDefault();
 
-    const username = document.querySelector('#typeEmailX').value.trim();
+    const email = document.querySelector('#typeEmailX').value.trim();
     const password = document.querySelector('#typePasswordX').value.trim();
 
-    if (username && password) {
+    if (email && password) {
         const response = await fetch('/api/users/login', {
             method: 'POST',
-            body: JSON.stringify({ username, password }),
+            body: JSON.stringify({ email, password }),
             headers: { 'Content-Type': 'application/json'},
         });
 
         if (response.ok) {
-            document.location.replace('/teamPage');
+            document.location.replace('/joinTeam');
         } else {
             alert(response.statusText);
         }
@@ -21,4 +21,4 @@ const loginFormHandler = async (event) => {
 
 
 
-document.querySelector('.btn').addEventListener('submit', loginFormHandler);
+document.querySelector('.btn').addEventListener('click', loginFormHandler);

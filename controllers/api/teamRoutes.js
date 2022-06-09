@@ -11,6 +11,7 @@ router.post('/', Authenticated, async (req, res) => {
 
         req.session.save(() => {
             req.session.team_id = newTeam.id;
+            req.session.team_name = newTeam.name;
 
             res.status(200).json({team: newTeam, message: 'Your team has been created!'});
         });
@@ -32,14 +33,21 @@ router.post('/jointeam', Authenticated, async (req, res) => {
         }
 
         const joinedTeam = await UserTeam.create({user_id: currentUser.id, team_id:teamData.id});
-        res.status(200).json({team:teamData.name, message:"You've been added to this team"});
+
+        req.session.save(() => {
+            req.session.team_id = teamData.id;
+            req.session.team_name = teamData.name;
+
+            res.status(200).json({team:teamData.name, message:"You've been added to this team"});
+        });
+
+
     } catch (err) {
         res.status(400).json(err);
     }
 });
 
 router.get('/:id', Authenticated, async (req, res) => {
-    console.log('Route works.');
     try {
         const userData = await Team.findByPk(req.params.id, {
             attributes: ['name'],
@@ -65,8 +73,13 @@ router.get('/:id', Authenticated, async (req, res) => {
 router.post('/chooseTeam', Authenticated, async (req,res) => {
 
     try {
+        const teamData = await Team.findByPk(req.body.team_id);
+
+        console.log(teamData.name);
+
         req.session.save(() => {
             req.session.team_id = req.body.team_id;
+            req.session.team_name = teamData.name;
 
             res.status(200).json({ message: 'Your team has been selected'});
         });

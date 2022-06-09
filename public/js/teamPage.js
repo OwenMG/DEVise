@@ -40,5 +40,16 @@ const joinTeamFormHandler = async (event) => {
     }
 };
 
+const chooseTeamHandler = async (event) => {
+    event.preventDefault();
+
+    const teamSection = document.querySelector('#chooseTeam');
+    const button = event.target;
+    if (button.matches(".btn")) {
+        document.location.replace('/teamDash');
+        
+    }
+};
+
 document.querySelector('#joinSubmit').addEventListener('click', joinTeamFormHandler);
 document.querySelector('#createSubmit').addEventListener('click', createTeamFormHandler);

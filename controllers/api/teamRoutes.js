@@ -85,4 +85,10 @@ router.get('/:id', Authenticated, async (req, res) => {
     }
 });
 
+router.post('/:id', Authenticated, async (req,res) => {
+    try {
+        const
+    }
+})
+
 module.exports = router;

@@ -14,12 +14,12 @@
     <div class="col-12 col-md-5 col-lg-8 d-flex align-items-center justify-content-md-end mt-3 mt-md-0">
         <div class="dropdown">
             <button class="btn btn-secondary dropdown-toggle bg-dark" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-expanded="false">
-              Hello, {{req.session.user_name}}
+              Hello, {{user_name}}
             </button>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
               <li><a class="dropdown-item" href="#">Settings</a></li>
               <li><a class="dropdown-item" href="#">Messages</a></li>
-              <li class="dropdown-item"><a id='signout' class="dropdown-item" href="#">Sign out</a></li>
+              <li><a id='signout' class="dropdown-item" href="#">Sign out</a></li>
             </ul>
           </div>
     </div>

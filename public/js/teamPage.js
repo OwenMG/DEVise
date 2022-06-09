@@ -1,3 +1,5 @@
+const res = require("express/lib/response");
+
 const createTeamFormHandler = async (event) => {
     event.preventDefault();
 
@@ -42,34 +44,23 @@ const joinTeamFormHandler = async (event) => {
 
 const chooseTeamHandler = async (event) => {
     event.preventDefault();
-    
+
     const button = event.target;
     console.log(button.id);
-    // if (button.matches(".btn")) {
-    //     try {
-    //         const response = await fetch(`/api/teams/${button.id}`, {
-    //             method: 'POST',
-    //             body: JSON.stringify({ name, password }),
-    //             headers: { 'Content-Type': 'application/json'},
-    //         });
-    //     }
-    //     document.location.replace('/teamDash');
+    const team_id = button.id;
+    if (button.matches(".btn")) {
+        const response = await fetch('/api/teams/chooseTeam', {
+            method: 'POST',
+            body: JSON.stringify({ team_id }),
+            headers: { 'Content-Type': 'application/json'},
+        });
 
-    // }
-
-    // if (email && password) {
-    //     const response = await fetch('/api/users/login', {
-    //         method: 'POST',
-    //         body: JSON.stringify({ email, password }),
-    //         headers: { 'Content-Type': 'application/json'},
-    //     });
-
-    //     if (response.ok) {
-    //         document.location.replace('/joinTeam');
-    //     } else {
-    //         alert(response.statusText);
-    //     }
-    // }
+        if (response.ok) {
+        document.location.replace('/teamDash');
+        } else {
+            alert(response.statusText);
+        }
+    }
 };
 
 document.querySelector('#joinSubmit').addEventListener('click', joinTeamFormHandler);

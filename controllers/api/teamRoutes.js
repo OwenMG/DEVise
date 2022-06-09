@@ -85,9 +85,17 @@ router.get('/:id', Authenticated, async (req, res) => {
     }
 });
 
-router.post('/:id', Authenticated, async (req,res) => {
-    req.session.team_id = req.params.id;
+router.post('/chooseTeam', Authenticated, async (req,res) => {
 
+    try {
+        req.session.save(() => {
+            req.session.team_id = req.body.team_id;
+
+            res.status(200).json({ message: 'Your team has been selected'});
+        });
+    } catch (err) {
+        res.status(400).json(err);
+    }
     
 })
 

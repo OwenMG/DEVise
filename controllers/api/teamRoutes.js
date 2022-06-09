@@ -55,8 +55,6 @@ router.get('/:id', Authenticated, async (req, res) => {
         
         const plainUsers = users.map((users) => users.get({plain:true}));
 
-        console.log(plainUsers[0].name);
-
         res.status(200).json(plainUsers);
         } catch (err) {
             console.log('Cannot find team by pk')

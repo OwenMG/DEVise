@@ -43,6 +43,7 @@ router.get('/joinTeam', Authenticated, async (req, res) => {
 });
 
 router.get('/teamDash', Authenticated, async (req, res) => {
+    console.log(req.session.user_id + " " + req.session.user_name);
     
     res.render('teamDash', {
     user_name:req.session.user_name,

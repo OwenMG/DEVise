@@ -5,7 +5,7 @@ const signupFormHandler = async (event) => {
     const username = document.querySelector('#typeUserNameX').value.trim();
     const password = document.querySelector('#typePasswordX').value.trim();
     const first_name = document.querySelector('#typeFirstNameX').value.toLowerCase().trim();
-    const last_ngame = document.querySelector('#typeLastNameX').value.toLowerCase().trim();
+    const last_name = document.querySelector('#typeLastNameX').value.toLowerCase().trim();
 
     if (username && password) {
         const response = await fetch('/api/users/create', {

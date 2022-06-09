@@ -20,10 +20,10 @@ router.post('/login', async (req, res) => {
                 .json({ message: 'Incorrect email or password, please try again' });
             return;
         }
-        
+
         // const plainUserData = userData.get({plain:true});
         // console.log(plainUserData);
-
+        console.log("This user's first name is: " + userData.first_name);
         req.session.save(() => {
             req.session.user_id = userData.id;
             req.session.user_name = userData.first_name;
@@ -39,6 +39,7 @@ router.post('/login', async (req, res) => {
 router.post('/create', async (req, res) => {
     try {
         const userData = await User.create(req.body);
+        console.log("This user's id is" + userData.id);
 
         req.session.save(() => {
             req.session.user_id = userData.id;

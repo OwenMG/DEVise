@@ -45,7 +45,7 @@ router.get('/joinTeam', Authenticated, async (req, res) => {
 router.get('/teamDash', Authenticated, async (req, res) => {
     
     res.render('teamDash');
-})
+});
 
 
 module.exports = router;

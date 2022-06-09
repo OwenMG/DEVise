@@ -20,6 +20,10 @@ router.post('/login', async (req, res) => {
                 .json({ message: 'Incorrect email or password, please try again' });
             return;
         }
+        
+        // const plainUserData = userData.get({plain:true});
+        // console.log(plainUserData);
+
         req.session.save(() => {
             req.session.user_id = userData.id;
             req.session.user_name = userData.first_name;

@@ -86,9 +86,9 @@ router.get('/:id', Authenticated, async (req, res) => {
 });
 
 router.post('/:id', Authenticated, async (req,res) => {
-    try {
-        const
-    }
+    req.session.team_id = req.params.id;
+
+    
 })
 
 module.exports = router;

@@ -34,7 +34,7 @@
       </section>
 
       <!-- Container to Join a Team You are On Team -->
-      <section class="vh-100 gradient-custom">
+      <section id='joinTeam' class="vh-100 gradient-custom">
         <div class="container py-5 h-100">
           <div class="row d-flex justify-content-center align-items-center h-100">
             <div>
@@ -48,9 +48,11 @@
                       <label class="form-label" for="typeTeamNameX">Name</label>
                     </div> -->
                     <div class="box">
-                        <button class="btn btn-outline-light btn-lg px-5" type="submit">Team 1</button>
+                        {{!-- <button class="btn btn-outline-light btn-lg px-5" type="submit">Team 1</button>
                         <button class="btn btn-outline-light btn-lg px-5" type="submit">Team 2</button>
-                        <button class="btn btn-outline-light btn-lg px-5" type="submit">Team 3</button>
+                        <button class="btn btn-outline-light btn-lg px-5" type="submit">Team 3</button> --}}
+                        {{#each plainTeam as |team| }}
+                        <button id="{{team.id}}" class="btn btn-outline-light btn-lg px-5" type="submit">{{team.name}}</button> 
                     </div>
                     <div class="d-flex justify-content-center text-center mt-4 pt-1">
                       <a href="#!" class="text-white"><i class="fab fa-facebook-f fa-lg"></i></a>

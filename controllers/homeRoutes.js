@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const {Team, User, UserTeam} = require('../models');
 const Authenticated = require('../utils/auth');
 
 //will need to display log in or sign in options
@@ -25,16 +26,19 @@ router.get('/joinTeam', Authenticated, async (req, res) => {
             include:[{model:Team, attributes: {exclude: ['password']}}],
         });
         if(!userTeamData) {
-            res.render('joinTeam');
+            res
+            .json({ message: 'No Teams Found. Create a new team or enter Team password to join a team' })
+            .render('joinTeam');
         }
-        const teams = userTeamData.teams
+        const teams = userTeamData.teams;
         
         const plainTeams = teams.map((teams) => teams.get({plain:true}));
         res.render('joinTeam', {
             plainTeams
         });
     } catch {
-        res.render('joinTeam');
+        res.status(500).json({message: 'Error Loading teams'})
+        .render('joinTeam');
     }
 });
 

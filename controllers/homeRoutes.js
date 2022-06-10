@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const {Team, User, UserTeam} = require('../models');
+const {Team, User, UserTeam, Kanban} = require('../models');
 const Authenticated = require('../utils/auth');
 
 //will need to display log in or sign in options
@@ -46,6 +46,16 @@ router.get('/teamDash', Authenticated, async (req, res) => {
     
     res.render('teamDash');
 });
+
+
+// home route kanban
+router.get('/kanban', Authenticated, async (req, res) => {
+    const kcardData = await Kanban.findAll().catch((err) => { 
+      res.json(err);
+    });
+    const kcards = kcardData.map((card) => card.get({ plain: true }));
+    res.render('kanban', { kcards });
+    });
 
 
 module.exports = router;

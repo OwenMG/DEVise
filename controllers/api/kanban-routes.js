@@ -1,22 +1,15 @@
 const router = require('express').Router();
-const Kcard = require('../../models/Kanban');
+const { Kanban } = require('../../models');
+const Authenticated = require('../../utils/auth');
 
 
-// home route kanban
-router.get('/api/kanban', async (req, res) => {
-    const kcardData = await Kcard.findAll().catch((err) => { 
-      res.json(err);
-    });
-    const kcards = kcardData.map((card) => card.get({ plain: true }));
-    res.render('kcards', { kcards });
-    });
 
 
 // route to delete task
 
 router.delete('/api/kanban/:id', async (req, res) => {
   try {
-    const kcardData = await Kcard.destroy({
+    const kcardData = await Kanban.destroy({
       where: {
         id: req.params.id
       },
@@ -37,7 +30,7 @@ router.delete('/api/kanban/:id', async (req, res) => {
 
 router.post('/api/kanban', async (req, res) => {
   try {
-    const newKcard = await Kcard.create({
+    const newKcard = await Kanban.create({
       member_name: req.body.name,
       kcard_name: req.body.task,
       description: req.body.description,
@@ -55,7 +48,7 @@ module.exports = router;
 
 router.put('/api/kanban/:id', async (req, res) => {
   try {
-    const kcardData = await Kcard.update( 
+    const kcardData = await Kanban.update( 
       {
         column_id: req.body.columnId,
       },
@@ -74,7 +67,7 @@ router.put('/api/kanban/:id', async (req, res) => {
 
 router.get('/api/kanban/:id', async (req, res) => {
   try {
-    const kcardData = await Kcard.findByPk(req.params.id, {
+    const kcardData = await Kanban.findByPk(req.params.id, {
     });
 
     const kcard = kcardData.get({ plain: true });

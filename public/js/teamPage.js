@@ -64,3 +64,5 @@ const chooseTeamHandler = async (event) => {
 document.querySelector('#joinSubmit').addEventListener('click', joinTeamFormHandler);
 document.querySelector('#createSubmit').addEventListener('click', createTeamFormHandler);
 document.querySelector('#joinTeam').addEventListener('click', chooseTeamHandler);
+
+

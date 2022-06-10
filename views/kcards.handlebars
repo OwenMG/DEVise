@@ -1,0 +1,81 @@
+
+<link rel="stylesheet" href="/css/kanbanstyle.css" />
+
+<div id="mainContainer">
+      <div id="columns" data-column="1">
+        <h1 class="columnTitle">To Do</h1> <button class="createBtn"><a href="#">+ Add Task</a></button>
+        {{#each  kcards as |kcard|}}
+          <div class="dragContainer" data-column="1">
+            <div class="card" draggable="true" data-id="{{kcard.id}}" data-card="{{kcard.column_id}}">
+            <span class="dltCardBtn"  data-id="{{kcard.id}}">&times;</span>
+            <div class="title">{{kcard.kcard_name}}</div>
+            <div class="description">{{kcard.description}}</div>
+            <div class="name">{{kcard.member_name}}</div>
+            </div>
+          </div>
+        {{/each}} 
+      </div>
+      <div id="columns" data-column="2">
+        <h1 class="columnTitle">In Progress</h1>
+        {{#each  kcards as |kcard|}}
+          <div class="dragContainer" data-column="2">
+            <div class="card" draggable="true" data-id="{{kcard.id}}" data-card="{{kcard.column_id}}">
+            <span class="dltCardBtn"  data-id="{{kcard.id}}">&times;</span>
+            <div class="title">{{kcard.kcard_name}}</div>
+            <div class="description">{{kcard.description}}</div>
+            <div class="name">{{kcard.member_name}}</div>
+            </div>
+          </div>
+        {{/each}} 
+      </div>
+      <div id="columns" data-column="3">
+        <h1 class="columnTitle">In Review</h1>
+        {{#each  kcards as |kcard|}}
+          <div class="dragContainer" data-column="3">
+            <div class="card" draggable="true" data-id="{{kcard.id}}" data-card="{{kcard.column_id}}">
+            <span class="dltCardBtn"  data-id="{{kcard.id}}">&times;</span>
+            <div class="title">{{kcard.kcard_name}}</div>
+            <div class="description">{{kcard.description}}</div>
+            <div class="name">{{kcard.member_name}}</div>
+            </div>
+          </div>
+        {{/each}} 
+      </div>
+      <div id="columns" data-column="4">
+        <h1 class="columnTitle">Done</h1>
+            {{#each  kcards as |kcard|}}
+          <div class="dragContainer" data-column="4">
+            <div class="card" draggable="true" data-id="{{kcard.id}}" data-card="{{kcard.column_id}}">
+            <span class="dltCardBtn"  data-id="{{kcard.id}}">&times;</span>
+            <div class="title">{{kcard.kcard_name}}</div>
+            <div class="description">{{kcard.description}}</div>
+            <div class="name">{{kcard.member_name}}</div>
+            </div>
+          </div>
+        {{/each}} 
+      </div>
+      <div class="modal" id="email-modal">
+        <div class="modal-content">
+          <span class="closeBtn">&times;</span>
+          <div class="modalContainer">
+            <form action="/" method="POST" class="modalForm" id="modalForm">
+              <div class="formValidation">
+                 <label class="lName" for="name">Name:</label>
+                <input type="text" class="forModal" id="name" name="name" placeholder="Enter Name">
+            </div>
+            <div class="formValidation">
+                 <label class="ltask" for="task">Task:</label>
+                <input type="text" class="forModal" id="task" name="task" placeholder="Enter Task">
+            </div>
+            <div class="formValidation">
+                 <label class="lDescription" for="description">Description:</label>
+                <input type="text" class="forModal" id="description" name="description" placeholder="Enter Description">
+            </div>
+            <input type="button" class="modalInputBtn" value="Save">
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="/js/kanban.js"></script>

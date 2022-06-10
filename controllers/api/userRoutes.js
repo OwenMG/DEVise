@@ -20,8 +20,10 @@ router.post('/login', async (req, res) => {
                 .json({ message: 'Incorrect email or password, please try again' });
             return;
         }
+        
         req.session.save(() => {
             req.session.user_id = userData.id;
+            req.session.user_name = userData.first_name;
             req.session.logged_in = true;
 
             res.json({ user: userData, message: 'You are logged in!'});
@@ -37,6 +39,7 @@ router.post('/create', async (req, res) => {
 
         req.session.save(() => {
             req.session.user_id = userData.id;
+            req.session.user_name = userData.first_name;
             req.session.logged_in = true;
 
             res.status(200).json({ user: userData.username, message: 'Your account has been created!'});

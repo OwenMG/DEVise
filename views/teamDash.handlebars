@@ -79,17 +79,19 @@
                           </tr>
                       </thead>
                       <tbody>
+                        {{#each plainUsers as |user| }}
                           <tr>
-                              <td>Owen Greengo</td>
-                              <td>Models/Routes</td>
-                              <td>06/1/2025</td>
+                              <td>{{user.first_name}} {{user.last_name}}</td>
+                              <td>placeholder</td>
+                              <td>placeholder</td>
                               <td>
                                   <a class="add" title="Add" data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a>
                                   <a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
                                   <a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
                               </td>
                           </tr>
-                          <tr>
+                          {{/each}}
+                          {{!-- <tr>
                               <td>Christina Robinson</td>
                               <td>User Routes</td>
                               <td>05/01/2023</td>
@@ -118,7 +120,7 @@
                                 <a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
                                 <a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
                             </td>
-                        </tr>
+                        </tr> --}}
                       </tbody>
                   </table>
               </div>

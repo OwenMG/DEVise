@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const {Team, User, UserTeam} = require('../../models');
+const {Team, User, UserTeam, Task} = require('../../models');
 const Authenticated = require('../../utils/auth');
 
 
@@ -51,8 +51,9 @@ router.get('/:id', Authenticated, async (req, res) => {
     try {
         const userData = await Team.findByPk(req.params.id, {
             attributes: ['name'],
-            include:[{model:User, attributes: ['first_name', 'last_name', 'email']}],
+            include:[{model:User, attributes: ['first_name', 'last_name', 'email'], include:[{model:Task, attributes: ['name','deadline','completed']}]}],
         });
+        console.log('got user data');
         if(!userData) {
             res
                 .status(404)
@@ -62,6 +63,12 @@ router.get('/:id', Authenticated, async (req, res) => {
         const users = userData.users;
         
         const plainUsers = users.map((users) => users.get({plain:true}));
+        const tasks = plainUsers.map((plainUsers) => plainUsers.tasks);
+
+        // const usersTasks = plainUsers.map((plainUsers) => plainUsers.first_name, plainUsers.last_name, plainUsers.tasks[0].name, plainUsers.tasks[0].deadline);
+
+        console.log(plainUsers[0].tasks[0].name)
+        console.log(tasks);
 
         res.status(200).json(plainUsers);
         } catch (err) {
@@ -69,6 +76,29 @@ router.get('/:id', Authenticated, async (req, res) => {
         res.status(400).json(err);
     }
 });
+
+// router.get('/:id', Authenticated, async (req, res) => {
+//     try {
+//         const userData = await Team.findByPk(req.params.id, {
+//             attributes: ['name'],
+//             include:[{model:User, attributes: ['first_name', 'last_name', 'email']}],
+//         });
+//         if(!userData) {
+//             res
+//                 .status(404)
+//                 .json({ message: 'No Additional Team Members. Share password to have teammates join!' });
+//                 return;
+//         }
+//         const users = userData.users;
+        
+//         const plainUsers = users.map((users) => users.get({plain:true}));
+
+//         res.status(200).json(plainUsers);
+//         } catch (err) {
+//             console.log('Cannot find team by pk')
+//         res.status(400).json(err);
+//     }
+// });
 
 router.post('/chooseTeam', Authenticated, async (req,res) => {
 

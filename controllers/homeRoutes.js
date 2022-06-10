@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const {Team, User, UserTeam} = require('../models');
+const {Team, User, UserTeam, Task} = require('../models');
 const Authenticated = require('../utils/auth');
 
 //will need to display log in or sign in options
@@ -43,12 +43,49 @@ router.get('/joinTeam', Authenticated, async (req, res) => {
 });
 
 router.get('/teamDash', Authenticated, async (req, res) => {
-    
-    res.render('teamDash', {
-    user_name:req.session.user_name,
-    team_name:req.session.team_name
-    });
+    console.log("This team id is" + req.session.team_id);
+    try {
+        const userData = await Team.findByPk(req.session.team_id, {
+            attributes: ['name'],
+            include:[{model:User, attributes: ['first_name', 'last_name', 'email'], include:[{model:Task, attributes: ['name','deadline','completed']}]}],
+        });
+        console.log(userData);
+        if(!userData) {
+            res
+                .json({ message: 'No Additional Team Members. Share password to have teammates join!' })
+                .render('teamDash', {
+                    user_name:req.session.user_name,
+                    team_name:req.session.team_name
+                    });
+        }
+        const users = userData.users;
+        
+        const plainUsers = users.map((users) => users.get({plain:true}));
+        console.log("rendering team dash");
+        res.render('teamDash', {
+            user_name:req.session.user_name,
+            team_name:req.session.team_name,
+            plainUsers
+            });
+
+    } catch {
+        console.log('Cannot find team by pk')
+        res.status(400).json({message: 'Error loading team member data'})
+        .render('teamDash', {
+        user_name:req.session.user_name,
+        team_name:req.session.team_name
+        });
+    }
+
 });
+
+// router.get('/teamDash', Authenticated, async (req, res) => {
+    
+//     res.render('teamDash', {
+//     user_name:req.session.user_name,
+//     team_name:req.session.team_name
+//     });
+// });
 
 
 module.exports = router;

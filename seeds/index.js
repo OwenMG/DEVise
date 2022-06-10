@@ -1,6 +1,9 @@
 const seedTeams = require('./teamSeeds');
 const seedUsers = require('./userSeeds');
 const seedUserTeams = require('./userTeamSeeds')
+const Kanban = require('../models/kanban');
+const kanbanData = require('./kanban-seeds.json');
+
 
 const sequelize = require('../config/connection');
 
@@ -15,6 +18,11 @@ const seedAll = async () => {
 
     await seedUserTeams();
     console.log('\n----- TEAM-USERS SEEDED -----\n')
+
+    await Kanban.bulkCreate(kanbanData, {
+        individualHooks: true,
+        returning: true,
+      });
 
     process.exit(0);
 };

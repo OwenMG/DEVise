@@ -2,6 +2,7 @@ const User = require('./User');
 const Team = require('./Team');
 const UserTeam = require('./UserTeam');
 const Task = require('./Task');
+const Kanban = require("./Kanban");
 
 
 User.belongsToMany(Team, { through: UserTeam});
@@ -13,4 +14,4 @@ User.hasMany(Task, {
 Task.belongsTo(User, {
     foreignKey: 'assignedTo'
 });
-module.exports = { User, Team, UserTeam, Task };
+module.exports = { User, Team, UserTeam, Task, Kanban };

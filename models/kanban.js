@@ -1,9 +1,9 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
-class Kcard extends Model {}
+class Kanban extends Model {}
 
-Kcard.init(
+Kanban.init(
   {
     id: {
       type: DataTypes.INTEGER,
@@ -32,8 +32,8 @@ Kcard.init(
     sequelize,
     freezeTableName: true,
     underscored: true,
-    modelName: 'kcards',
+    modelName: 'kanban',
   }
 );
 
-module.exports = Kcard;
+module.exports = Kanban;

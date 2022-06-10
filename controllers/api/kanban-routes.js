@@ -1,8 +1,8 @@
 const router = require('express').Router();
-const Kcard = require('../../models/kanban');
+const Kcard = require('../../models/Kanban');
 
 
-// route to get tasks
+// home route kanban
 router.get('/api/kanban', async (req, res) => {
     const kcardData = await Kcard.findAll().catch((err) => { 
       res.json(err);

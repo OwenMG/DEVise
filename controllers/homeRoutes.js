@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const {Team, User, UserTeam, Task} = require('../models');
+const {Team, User, UserTeam, Task, Kanban} = require('../models');
 const Authenticated = require('../utils/auth');
 
 //will need to display log in or sign in options

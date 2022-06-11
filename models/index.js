@@ -2,7 +2,7 @@ const User = require('./User');
 const Team = require('./Team');
 const UserTeam = require('./UserTeam');
 const Task = require('./Task');
-const Kanban = require("./Kanban");
+const Kanban = require("./kanban");
 
 
 User.belongsToMany(Team, { through: UserTeam});

@@ -29,11 +29,13 @@ router.delete('/:id', async (req, res) => {
 // route to create task 
 
 router.post('/create', async (req, res) => {
+  console.log(req.session.team_id);
   try {
     const newKcard = await Kanban.create({
       member_name: req.body.name,
       kcard_name: req.body.task,
       description: req.body.description,
+      // team_id: req.session.team_id,
     });
 
     res.status(200).json(newKcard);

@@ -90,12 +90,22 @@ router.get('/teamDash', Authenticated, async (req, res) => {
 
 // home route kanban
 router.get('/kanban', async (req, res) => {
-    const kcardData = await Kanban.findAll().catch((err) => { 
-      res.json(err);
-    });
-    const kcards = kcardData.map((card) => card.get({ plain: true }));
-    res.render('kanban', { kcards });
-    });
+
+    try {
+        const kcardData = await Kanban.findAll({where:{team_id:req.session.team_id}});
+        console.log(kcardData);
+        
+        if(!kcardData) {
+            res.render('kanban');
+        } else {
+            const kcards = kcardData.map((card) => card.get({ plain: true }));
+            res.render('kanban', { kcards });
+        }
+
+    } catch (err) {
+        res.render('kanban');
+    }
+});
 
 
 module.exports = router;

@@ -27,6 +27,13 @@ Kanban.init(
       type: DataTypes.STRING,
       defaultValue: 1,
     },
+    team_id: {
+      type: DataTypes.INTEGER,
+      references: {
+          model: 'team',
+          key: 'id'
+      }
+  }
   },
   {
     sequelize,

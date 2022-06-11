@@ -140,7 +140,7 @@ const newTaskHandler = async (event) => {
   
     if (name && task && description) {
 
-      const response = await fetch('api/kanban/create', {
+      const response = await fetch('/api/kanban/create', {
         method: 'POST',
         body: JSON.stringify({ task, description, name }),
         headers: {

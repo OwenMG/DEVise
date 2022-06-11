@@ -14,4 +14,13 @@ User.hasMany(Task, {
 Task.belongsTo(User, {
     foreignKey: 'assignedTo'
 });
+
+Team.hasMany(Kanban, {
+    foreignKey:'team_id'
+});
+
+Kanban.belongsTo(Team, {
+    foreignKey: 'team_id'
+});
+
 module.exports = { User, Team, UserTeam, Task, Kanban };

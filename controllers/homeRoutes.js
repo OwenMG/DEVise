@@ -89,7 +89,7 @@ router.get('/teamDash', Authenticated, async (req, res) => {
 
 
 // home route kanban
-router.get('/kanban', Authenticated, async (req, res) => {
+router.get('/kanban', async (req, res) => {
     const kcardData = await Kanban.findAll().catch((err) => { 
       res.json(err);
     });

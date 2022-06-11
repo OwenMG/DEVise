@@ -31,7 +31,7 @@
 <div id="mainContainer">
       <div id="columns" data-column="1">
         <h1 class="columnTitle">To Do</h1> <button class="createBtn"><a href="#">+ Add Task</a></button>
-        {{#each  kanban as |task|}}
+        {{#each  kcards as |task|}}
           <div class="dragContainer" data-column="1">
             <div class="card" draggable="true" data-id="{{task.id}}" data-card="{{task.column_id}}">
             <span class="dltCardBtn"  data-id="{{task.id}}">&times;</span>
@@ -44,7 +44,7 @@
       </div>
       <div id="columns" data-column="2">
         <h1 class="columnTitle">In Progress</h1>
-        {{#each  kanban as |task|}}
+        {{#each  kcards as |task|}}
           <div class="dragContainer" data-column="2">
             <div class="card" draggable="true" data-id="{{task.id}}" data-card="{{task.column_id}}">
             <span class="dltCardBtn"  data-id="{{task.id}}">&times;</span>
@@ -57,7 +57,7 @@
       </div>
       <div id="columns" data-column="3">
         <h1 class="columnTitle">In Review</h1>
-        {{#each  kanban as |task|}}
+        {{#each  kcards as |task|}}
           <div class="dragContainer" data-column="3">
             <div class="card" draggable="true" data-id="{{task.id}}" data-card="{{task.column_id}}">
             <span class="dltCardBtn"  data-id="{{task.id}}">&times;</span>
@@ -70,7 +70,7 @@
       </div>
       <div id="columns" data-column="4">
         <h1 class="columnTitle">Done</h1>
-            {{#each  kanban as |task|}}
+            {{#each  kcards as |task|}}
           <div class="dragContainer" data-column="4">
             <div class="card" draggable="true" data-id="{{task.id}}" data-card="{{task.column_id}}">
             <span class="dltCardBtn"  data-id="{{task.id}}">&times;</span>

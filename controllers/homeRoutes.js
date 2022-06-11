@@ -47,7 +47,7 @@ router.get('/teamDash', Authenticated, async (req, res) => {
     try {
         const userData = await Team.findByPk(req.session.team_id, {
             attributes: ['name'],
-            include:[{model:User, attributes: ['first_name', 'last_name', 'email'], include:[{model:Task, attributes: ['name','deadline','completed']}]}],
+            include:[{model:User, attributes: ['first_name', 'last_name', 'email', 'username'], include:[{model:Task, attributes: ['name','deadline','completed']}]}],
         });
 
         if(!userData) {

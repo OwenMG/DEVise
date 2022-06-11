@@ -88,6 +88,16 @@ router.get('/teamDash', Authenticated, async (req, res) => {
 // });
 
 
+// home route kanban
+router.get('/kanban', Authenticated, async (req, res) => {
+    const kcardData = await Kanban.findAll().catch((err) => { 
+      res.json(err);
+    });
+    const kcards = kcardData.map((card) => card.get({ plain: true }));
+    res.render('kanban', { kcards });
+    });
+
+
 module.exports = router;
 
 

@@ -1,0 +1,114 @@
+  <link rel="stylesheet" href="/css/kanbanstyle.css" />
+  <body >
+
+    <nav class="navbar navbar-light p-3 coolBeige">
+    <div class="d-flex col-12 col-md-3 col-lg-2 mb-2 mb-lg-0 flex-wrap flex-md-nowrap justify-content-between">
+        <a class="navbar-brand" href="/teamDash">
+          &#8678 Team Dashboard <i class="fa-solid fa-people-group"></i>
+        </a>
+        <button class="navbar-toggler d-md-none collapsed mb-3" type="button" data-toggle="collapse" data-target="#sidebar" aria-controls="sidebar" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </div>
+    <div class="col-12 col-md-4 col-lg-2">
+        <h2>Team Kanban</h2>
+    </div>
+    <div class="col-12 col-md-5 col-lg-8 d-flex align-items-center justify-content-md-end mt-3 mt-md-0">
+        <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle bg-dark" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-expanded="false">
+              Hello, John Doe
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <li><a class="dropdown-item" href="#">Settings</a></li>
+              <li><a class="dropdown-item" href="#">Messages</a></li>
+              <li><a class="dropdown-item" href="#">Sign out</a></li>
+            </ul>
+          </div>
+    </div>
+  </nav>
+
+
+<div id="mainContainer">
+      <div id="columns" data-column="1">
+        <h1 class="columnTitle">To Do</h1> <button class="createBtn"><a href="#">+ Add Task</a></button>
+        {{#each  kanban as |task|}}
+          <div class="dragContainer" data-column="1">
+            <div class="card" draggable="true" data-id="{{task.id}}" data-card="{{task.column_id}}">
+            <span class="dltCardBtn"  data-id="{{task.id}}">&times;</span>
+            <div class="title">{{task.task_name}}</div>
+            <div class="description">{{task.description}}</div>
+            <div class="name">{{task.member_name}}</div>
+            </div>
+          </div>
+        {{/each}} 
+      </div>
+      <div id="columns" data-column="2">
+        <h1 class="columnTitle">In Progress</h1>
+        {{#each  kanban as |task|}}
+          <div class="dragContainer" data-column="2">
+            <div class="card" draggable="true" data-id="{{task.id}}" data-card="{{task.column_id}}">
+            <span class="dltCardBtn"  data-id="{{task.id}}">&times;</span>
+            <div class="title">{{task.task_name}}</div>
+            <div class="description">{{task.description}}</div>
+            <div class="name">{{task.member_name}}</div>
+            </div>
+          </div>
+        {{/each}} 
+      </div>
+      <div id="columns" data-column="3">
+        <h1 class="columnTitle">In Review</h1>
+        {{#each  kanban as |task|}}
+          <div class="dragContainer" data-column="3">
+            <div class="card" draggable="true" data-id="{{task.id}}" data-card="{{task.column_id}}">
+            <span class="dltCardBtn"  data-id="{{task.id}}">&times;</span>
+            <div class="title">{{task.task_name}}</div>
+            <div class="description">{{task.description}}</div>
+            <div class="name">{{task.member_name}}</div>
+            </div>
+          </div>
+        {{/each}} 
+      </div>
+      <div id="columns" data-column="4">
+        <h1 class="columnTitle">Done</h1>
+            {{#each  kanban as |task|}}
+          <div class="dragContainer" data-column="4">
+            <div class="card" draggable="true" data-id="{{task.id}}" data-card="{{task.column_id}}">
+            <span class="dltCardBtn"  data-id="{{task.id}}">&times;</span>
+            <div class="title">{{task.task_name}}</div>
+            <div class="description">{{task.description}}</div>
+            <div class="name">{{task.member_name}}</div>
+            </div>
+          </div>
+        {{/each}} 
+      </div>
+      <div class="modal" id="email-modal">
+        <div class="modal-content">
+          <span class="closeBtn">&times;</span>
+          <div class="modalContainer">
+            <form action="/" method="POST" class="modalForm" id="modalForm">
+              <div class="formValidation">
+                 <label class="lName" for="name">Name:</label>
+                <input type="text" class="forModal" id="name" name="name" placeholder="Enter Name">
+            </div>
+            <div class="formValidation">
+                 <label class="lTask" for="task">Task:</label>
+                <input type="text" class="forModal" id="task" name="task" placeholder="Enter Task">
+            </div>
+            <div class="formValidation">
+                 <label class="lDescription" for="description">Description:</label>
+                <input type="text" class="forModal" id="description" name="description" placeholder="Enter Description">
+            </div>
+            <input type="button" class="modalInputBtn" value="Save">
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+      crossorigin="anonymous"
+    ></script>
+    <script src="/js/kanban.js"></script>
+  </body>

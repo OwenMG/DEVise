@@ -22,7 +22,7 @@ router.get('/signup', async (req, res) => {
 router.get('/joinTeam', Authenticated, async (req, res) => {
     try {
         const userTeamData = await User.findByPk(req.session.user_id, {
-            attributes: {exclude: ['password', 'first_name', 'last_name', 'email']},
+            attributes: {exclude: ['password', 'first_name', 'last_name', 'email', 'username']},
             include:[{model:Team, attributes: {exclude: ['password']}}],
         });
         if(!userTeamData) {

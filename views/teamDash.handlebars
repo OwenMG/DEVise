@@ -70,18 +70,14 @@
                   <div class="table-title">
                       <div class="row">
                           <div class="col-sm-8"><h2>Team Members</h2></div>
-                          <div class="col-sm-5">
-                              <button type="button" class="btn btn-info add-new"><i class="fa fa-plus"></i> Add New</button>
-                          </div>
                       </div>
                   </div>
                   <table class="table table-bordered">
                       <thead>
                           <tr>
                               <th>Name</th>
-                              <th>Milestone</th>
-                              <th>Due Date</th>
-                              <th>Actions</th>
+                              <th>Email</th>
+                              <th>Username</th>
                           </tr>
                       </thead>
                       <tbody>
@@ -90,11 +86,6 @@
                               <td>{{user.first_name}} {{user.last_name}}</td>
                               <td>placeholder</td>
                               <td>placeholder</td>
-                              <td>
-                                  <a class="add" title="Add" data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a>
-                                  <a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
-                                  <a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
-                              </td>
                           </tr>
                           {{/each}}
                           {{!-- <tr>

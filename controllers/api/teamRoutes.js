@@ -53,7 +53,7 @@ router.get('/:id', Authenticated, async (req, res) => {
             attributes: ['name'],
             include:[{model:User, attributes: ['first_name', 'last_name', 'email'], include:[{model:Task, attributes: ['name','deadline','completed']}]}],
         });
-        console.log('got user data');
+
         if(!userData) {
             res
                 .status(404)
@@ -67,12 +67,9 @@ router.get('/:id', Authenticated, async (req, res) => {
 
         // const usersTasks = plainUsers.map((plainUsers) => plainUsers.first_name, plainUsers.last_name, plainUsers.tasks[0].name, plainUsers.tasks[0].deadline);
 
-        console.log(plainUsers[0].tasks[0].name)
-        console.log(tasks);
-
         res.status(200).json(plainUsers);
         } catch (err) {
-            console.log('Cannot find team by pk')
+
         res.status(400).json(err);
     }
 });
@@ -105,7 +102,6 @@ router.post('/chooseTeam', Authenticated, async (req,res) => {
     try {
         const teamData = await Team.findByPk(req.body.team_id);
 
-        console.log(teamData.name);
 
         req.session.save(() => {
             req.session.team_id = req.body.team_id;

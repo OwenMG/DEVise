@@ -94,7 +94,11 @@ router.get('/kanban', async (req, res) => {
       res.json(err);
     });
     const kcards = kcardData.map((card) => card.get({ plain: true }));
-    res.render('kanban', { kcards });
+    res.render('kanban', { kcards, 
+        user_name:req.session.user_name,
+        team_name:req.session.team_name
+    });
+    
     });
 
 

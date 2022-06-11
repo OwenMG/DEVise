@@ -79,13 +79,13 @@ router.get('/teamDash', Authenticated, async (req, res) => {
 
 });
 
-// router.get('/teamDash', Authenticated, async (req, res) => {
+router.get('/teamDash', Authenticated, async (req, res) => {
     
-//     res.render('teamDash', {
-//     user_name:req.session.user_name,
-//     team_name:req.session.team_name
-//     });
-// });
+    res.render('teamDash', {
+    user_name:req.session.user_name,
+    team_name:req.session.team_name
+    });
+});
 
 
 // home route kanban

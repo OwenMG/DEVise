@@ -27,7 +27,7 @@ router.get('/joinTeam', Authenticated, async (req, res) => {
         });
         if(!userTeamData) {
             res
-            .json({ message: 'No Teams Found. Create a new team or enter Team password to join a team' })
+            // .json({ message: 'No Teams Found. Create a new team or enter Team password to join a team' })
             .render('joinTeam');
         }
         const teams = userTeamData.teams;
@@ -94,7 +94,7 @@ router.get('/kanban', async (req, res) => {
     try {
         const kcardData = await Kanban.findAll({where:{team_id:req.session.team_id}});
         console.log(kcardData);
-        
+
         if(!kcardData) {
             res.render('kanban');
         } else {

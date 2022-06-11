@@ -70,7 +70,7 @@ function cardEventHandler (card) {
           
             const columnId = card.parentElement.getAttribute("data-column");
         
-              const response = await fetch(`/api/kanban/${id}`, {
+              const response = await fetch(`api/kanban/${id}`, {
                 method: 'PUT',
                 body: JSON.stringify({ columnId }),
                 headers: {
@@ -115,12 +115,12 @@ const delButtonHandler = async (event) => {
     if (event.target.hasAttribute('data-id')) {
       const id = event.target.getAttribute('data-id');
   
-      const response = await fetch(`/api/kanban/${id}`, {
+      const response = await fetch(`api/kanban/${id}`, {
         method: 'DELETE',
       });
   
       if (response.ok) {
-        document.location.replace('/api/kanban');
+        document.location.replace('/kanban');
       } else {
         alert('Failed to delete project');
       }
@@ -140,7 +140,7 @@ const newTaskHandler = async (event) => {
   
     if (name && task && description) {
 
-      const response = await fetch(`/api/kanban`, {
+      const response = await fetch('api/kanban/create', {
         method: 'POST',
         body: JSON.stringify({ task, description, name }),
         headers: {
@@ -149,7 +149,7 @@ const newTaskHandler = async (event) => {
       });
   
       if (response.ok) {
-        document.location.replace('/api/kanban');
+        document.location.replace('/kanban');
       } else {
         alert('Failed to create project');
       }

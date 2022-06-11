@@ -7,7 +7,7 @@ const Authenticated = require('../../utils/auth');
 
 // route to delete task
 
-router.delete('/api/kanban/:id', async (req, res) => {
+router.delete('/:id', async (req, res) => {
   try {
     const kcardData = await Kanban.destroy({
       where: {
@@ -28,7 +28,7 @@ router.delete('/api/kanban/:id', async (req, res) => {
 
 // route to create task 
 
-router.post('/api/kanban', async (req, res) => {
+router.post('/create', async (req, res) => {
   try {
     const newKcard = await Kanban.create({
       member_name: req.body.name,
@@ -46,7 +46,7 @@ module.exports = router;
 
 // update 
 
-router.put('/api/kanban/:id', async (req, res) => {
+router.put('/:id', async (req, res) => {
   try {
     const kcardData = await Kanban.update( 
       {
@@ -65,7 +65,7 @@ router.put('/api/kanban/:id', async (req, res) => {
 });
 
 
-router.get('/api/kanban/:id', async (req, res) => {
+router.get('/:id', async (req, res) => {
   try {
     const kcardData = await Kanban.findByPk(req.params.id, {
     });

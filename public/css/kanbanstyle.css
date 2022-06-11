@@ -129,7 +129,6 @@ h1 {
 .modalContainer {
     width: 100%;
     height: 100%;
-    background-image: url("../modalbg.jpeg");
     height: 100%;
 }
 
@@ -139,8 +138,8 @@ h1 {
     color: white;
 }
 
-.lname, .lTask, .lDescription {
-    color: white;
+.lName, .lTask, .lDescription {
+    color: rgb(84, 75, 75);
 }
 
 .hide{

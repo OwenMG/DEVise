@@ -18,7 +18,7 @@
 
   ## Description
 
-  DEVise is a coding project development hub for teams to gather, share resources, and track progress on software applications.
+  DEVise is a coding project development hub for teams to gather, share resources, and track progress on software applications. This application uses express-session and RESTful api routes to manage user logins and sessions. It also uses [chartist](https://gionkunz.github.io/chartist-js/) to display the dashboard information and bootstrap as a style framework.
 
   ## Installation Instructions
 
@@ -27,6 +27,15 @@
   ## Usage Information
 
   To use DEVise, visit the [live deployment](https://devisehub.herokuapp.com/), or set up the server configuration in the local repository and visit your localhost deployment for development purposes.
+
+  When you reach the landing page, you have the option of logging in:
+
+![login screenshot](/assets/images/devise_login.png)
+
+  or signing up:
+
+  ![sign up screenshot](/assets/images/devise_signup.png)
+
 
   ## Contributing
 
